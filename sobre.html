@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quem Somos | Por acaso 3D</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap');
+
+        :root {
+            --bg-primary: #060606;
+            --bg-card: #111111;
+            --gold-main: #D4AF37;
+            --gold-light: #F3D06B;
+            --gold-gradient: linear-gradient(135deg, #BF953F 0%, #FCF6BA 45%, #B38728 70%, #FBF5B7 100%);
+            --text-main: #F5F5F0;
+            --text-muted: #A3A39E;
+            --border-gold: rgba(212, 175, 55, 0.25);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Tipografia Especial */
+        .script-title {
+            font-family: 'Great Vibes', cursive;
+            font-size: clamp(2.5rem, 5vw, 3.8rem);
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 400;
+            line-height: 1.2;
+        }
+
+        .gold-text {
+            color: var(--gold-light);
+        }
+
+        /* Navegação */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(6, 6, 6, 0.9);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-gold);
+        }
+
+        .navbar {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .brand img {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 1px solid var(--gold-main);
+        }
+
+        .brand span {
+            font-weight: 700;
+            font-size: 1.15rem;
+            letter-spacing: 0.5px;
+            color: var(--gold-light);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--gold-light);
+        }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--gold-gradient);
+        }
+
+        /* Botões */
+        .btn-outline {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: transparent;
+            color: var(--gold-light);
+            font-weight: 600;
+            padding: 0.85rem 1.8rem;
+            border-radius: 50px;
+            border: 1px solid var(--gold-main);
+            transition: all 0.25s;
+        }
+
+        .btn-outline:hover {
+            background: rgba(212, 175, 55, 0.1);
+        }
+
+        /* Hero Section */
+        .hero {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 5rem 1.5rem 2rem;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .hero-logo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 0 40px rgba(212, 175, 55, 0.2);
+        }
+
+        /* Seções Gerais */
+        .section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 1.5rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-header h2 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-header p {
+            color: var(--text-muted);
+        }
+
+        /* Específicos da Página Quem Somos */
+        .about-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-gold);
+            border-radius: 20px;
+            padding: 3rem 2.5rem;
+            max-width: 820px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about-card p {
+            color: var(--text-main);
+            font-size: 1.08rem;
+            line-height: 1.85;
+            margin-bottom: 1.5rem;
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2.5rem;
+        }
+
+        .step-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border-gold);
+            border-radius: 16px;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .step-item:hover {
+            transform: translateY(-4px);
+        }
+
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: var(--gold-gradient);
+            color: #060606;
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        .step-item h3 {
+            color: var(--gold-light);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .step-item p {
+            color: var(--text-muted);
+            font-size: 0.92rem;
+        }
+
+        /* Rodapé */
+        footer {
+            border-top: 1px solid var(--border-gold);
+            padding: 3rem 1.5rem;
+            text-align: center;
+            color: var(--text-muted);
+            margin-top: 4rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 1rem 0;
+        }
+
+        .footer-links a {
+            color: var(--gold-light);
+        }
+
+        /* Responsivo */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .nav-links {
+                gap: 1.2rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+
+<header>
+    <nav class="navbar">
+        <a href="index.html" class="brand">
+            <img src="assets/logo.png" alt="Logo Por acaso 3D" />
+            <span>Por acaso 3D</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="index.html">Início</a></li>
+            <li><a href="sobre.html" class="active">Quem Somos</a></li>
+            <li><a href="duvidas.html">Dúvidas</a></li>
+            <li><a href="contato.html">Contato</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+
+    <section class="hero">
+        <img src="assets/logo.png" alt="Logo Por acaso 3D" class="hero-logo" />
+        <h1 class="script-title">Quem somos?</h1>
+    </section>
+
+
+    <section class="section" style="padding-top: 0;">
+        <div class="about-card">
+            <p>
+                Somos a <strong class="gold-text">Por acaso</strong>, um ateliê de criação dedicado a materializar ideias
+                e dar forma a projetos únicos. Nossa missão é oferecer peças sob medida, feitas com atenção aos detalhes
+                e qualidade artesanal para atender às suas necessidades exclusivas.
+            </p>
+            <p>
+                Criamos objetos personalizados, itens de decoração e soluções funcionais, garantindo que cada item
+                seja um reflexo da sua visão.
+            </p>
+            <p style="margin-bottom: 0; color: var(--gold-light); font-weight: 600;">
+                Tudo o que criamos é feito sob encomenda e com cuidado, pronto para ser enviado para todo o Brasil.
+            </p>
+        </div>
+    </section>
+
+
+    <section class="section">
+        <div class="section-header">
+            <h2>Como funciona uma encomenda</h2>
+            <p>Do seu rascunho ou referência até a entrega na sua casa</p>
+        </div>
+
+        <div class="steps-grid">
+            <div class="step-item">
+                <div class="step-number">1</div>
+                <h3>Você traz a ideia</h3>
+                <p>Envie uma foto, referência ou explique o que deseja pelo WhatsApp ou Instagram.</p>
+            </div>
+
+            <div class="step-item">
+                <div class="step-number">2</div>
+                <h3>Personalização</h3>
+                <p>Definimos juntos as cores, tamanhos e características exclusivas do seu projeto.</p>
+            </div>
+
+            <div class="step-item">
+                <div class="step-number">3</div>
+                <h3>Produção Artesanal</h3>
+                <p>Imprimimos em 3D com alta precisão e fazemos o acabamento manual peça por peça.</p>
+            </div>
+
+            <div class="step-item">
+                <div class="step-number">4</div>
+                <h3>Envio Seguro</h3>
+                <p>Embalado com proteção reforçada e enviado para qualquer lugar do Brasil.</p>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 3rem;">
+            <a href="duvidas.html" class="btn-outline">Tirar Dúvidas Frequentes →</a>
+        </div>
+    </section>
+</main>
+
+
+<footer>
+    <p><strong class="gold-text">Por acaso 3D</strong> — Presentes Personalizados</p>
+    <div class="footer-links">
+        <a href="https://instagram.com/poracaso.3d" target="_blank">Instagram (@poracaso.3d)</a>
+        <span>•</span>
+        <a href="https://wa.me/5518988196226" target="_blank">WhatsApp: (18) 98819-6226</a>
+    </div>
+    <p style="font-size: 0.85rem; margin-top: 0.5rem;">📦 Enviamos para todo o Brasil</p>
+</footer>
+
+</body>
+</html>
